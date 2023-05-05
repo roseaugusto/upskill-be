@@ -1,16 +1,16 @@
 repos:
-- repo: https://github.com/FriendsOfPHP/PHP-CS-Fixer
-  rev: 7fc8eef
-  hooks:
-    - id: php-cs-fixer
-      name: php-cs-fixer
-      entry: php-cs-fixer fix --config=.php_cs --ansi --verbose --dry-run --diff
-      language: system
-      types: [php]
+  - repo: https://github.com/digitalpulp/pre-commit-php.git
+    rev: 1.4.0
+    hooks:
+      - id: php-lint-all
+      - id: php-cs-fixer
+        files: \.(php)$
+        args: [--rules=@PSR2]
+      - id: php-unit
 
-repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.3.0
-  hooks:
-    - id: trailing-whitespace
-    - id: end-of-file-fixer
+  - repo: https://github.com/pre-commit/pre-commit-hooks.git
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: end-of-file-fixer
