@@ -18,6 +18,7 @@ class Attachment extends Model
         return $this->morphTo();
     }
 
+
     public static function transformAvatarFileRequest(UploadedFile $file, string $filename): array
     {
         return [
