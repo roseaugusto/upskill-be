@@ -16,7 +16,7 @@ class AttachmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'url' => env('APP_URL') . $this->url,
+            'url' => $this->url,
             'file_name' => $this->file_name,
             'extension' => $this->extension,
             'type' => $this->type,

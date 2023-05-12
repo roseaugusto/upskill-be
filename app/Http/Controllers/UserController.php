@@ -13,8 +13,8 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         $user = User::create(Arr::except($request->validated(), ['profile_picture']));
-        $filename = $user->uploadAvatar($request->validated()['profile_picture']);
-        $user->attachments()->create(Attachment::transformAvatarFileRequest($request->validated()['profile_picture'], $filename));
+        $file = $user->uploadAvatar($request->validated()['profile_picture']);
+        $user->attachments()->create(Attachment::transformAvatarFileRequest($request->validated()['profile_picture'], $file));
         $attachmentUrl = $this->generateAttachmentUrl($user->id);
         $this->createAttachment($user, $attachmentUrl);
 
@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function generateAttachmentUrl(int $userId)
     {
-        return "localhost/user-info/{$userId}";
+        return env('APP_URL').`/user-information/{$userId}`;
     }
 
     public function createAttachment(User $user, string $attachmentUrl)
