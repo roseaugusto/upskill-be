@@ -10,6 +10,11 @@ use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
+    public function show(User $user)
+    {
+        return new UserResource($user);
+    }
+
     public function store(UserStoreRequest $request)
     {
         $user = User::create(Arr::except($request->validated(), ['profile_picture']));
