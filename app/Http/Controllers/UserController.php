@@ -7,6 +7,8 @@ use App\Http\Resources\UserResource;
 use App\Models\Attachment;
 use App\Models\User;
 use Illuminate\Support\Arr;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
@@ -40,5 +42,24 @@ class UserController extends Controller
             'extension' => 'svg',
              'type' => 'qrcode'
         ]);
+    }
+
+    public function showInfo($userId)
+    {
+        $user = User::findOrFail($userId);
+        $attachmentData = $user->attachments;
+        $user->attachments;
+
+        $qrCodeDataUri = null;
+
+        foreach ($attachmentData as $attachment) {
+            if ($attachment->type === 'qrcode') {
+                $qrCode = QrCode::format('svg')->size(200)->generate($attachment->url);
+                $qrCodeDataUri = 'data:image/svg+xml;base64,' . base64_encode($qrCode);
+            }
+        }
+
+
+        return Response::json(['user'=>$user, 'qrCodeDataUri' => $qrCodeDataUri,]);
     }
 }

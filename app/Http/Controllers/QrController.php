@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Storage;
 
 class QrController extends Controller
 {

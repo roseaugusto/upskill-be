@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\QrController;
-use App\Http\Controllers\UserInfoController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/thank-you/{userId}', [QrController::class,'show']);
+Route::get('/user-information/{userId}', [UserController::class,'showInfo']);
+Route::apiResource('users', UserController::class);
