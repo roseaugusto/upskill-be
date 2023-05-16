@@ -32,3 +32,20 @@ Cloudinary makes it easy for us to store, transform, optimize, and deliver all y
     ```
 4. You may then change the FILESYSTEM_DISK value to `cloudinary`
 5. Use Storage class to upload, retrieve, delete etc.
+
+### Deployment
+
+This project can be deployed via Render just as how we deployed this for production use. Render is a fully-managed cloud platform where you can host static sites, backend APIs, databases, cron jobs, and all your other apps in one place. With Render's free instance types you can spin up Web Services, PostgreSQL databases, and Redis instances at no charge.
+To start deployment,
+
+1. A Dockerfile is used to deploy this project. For this instance, we used https://github.com/laravel-fans/laravel-docker to setup full Laravel production environment for Docker. You may use this also on your other Laravel projects to deploy on render.
+2. Create an account on Render (https://render.com/)
+3. Connect your github account
+4. Create a new `Web Service` on Render, and give Render permission to access your new repo.
+5. Click Connect
+6. Render will detect that you are using a Dockerfile for this instance and will enable the correct settings for your deployment.
+7. Supply the needed details such as project name and branch to deploy
+8. Click Advanced at the bottom and add your environment variables (e.g. APP_KEY, DB_CONNECTIONS etc.)
+9. Click Create Web Service
+10. Your application will then start deployment. With the Dockerfile used, it will automatically migrate the tables for you as long as you supply the right environment variables.
+11. Deployed! (e.g. https://upskill-be-xbws.onrender.com)
